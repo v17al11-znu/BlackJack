@@ -25,4 +25,11 @@ class PlayerTest {
         player.stop();
         assertTrue(player.hasStopped(), "Гравець має бути зупинений.");
     }
+
+    @Test
+    void testAddScoreNegative() {
+        Player player = new Player("TestPlayer");
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> player.addScore(-5));
+        assertEquals("Очки не можуть бути від'ємними.", exception.getMessage());
+    }
 }

@@ -23,7 +23,10 @@ public class Player {
     }
 
     public void addScore(int card) {
-        score += card; // Додаємо значення карти до рахунку
+        if (card < 0) {
+            throw new IllegalArgumentException("Очки не можуть бути від'ємними.");
+        }
+        score += card;
     }
 
     public void stop() {
