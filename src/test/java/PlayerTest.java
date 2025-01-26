@@ -1,4 +1,7 @@
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
+
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,5 +33,12 @@ class PlayerTest {
         Player player = new Player("TestPlayer");
         Exception exception = assertThrows(IllegalArgumentException.class, () -> player.addScore(-5));
         assertEquals("Очки не можуть бути від'ємними.", exception.getMessage());
+    }
+
+    @Test
+    @Timeout(value = 1, unit = TimeUnit.SECONDS)
+    void testTimeout() throws InterruptedException {
+        Thread.sleep(500); // Імітація затримки
+        assertTrue(true);
     }
 }
