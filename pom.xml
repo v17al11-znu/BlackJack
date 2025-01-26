@@ -12,33 +12,51 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <testGroups>positive</testGroups> <!-- За замовчуванням позитивні тести -->
     </properties>
 
     <dependencies>
+        <!-- JUnit 5 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>5.8.2</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- TestNG (опціонально, якщо потрібен) -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.8.0</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite</artifactId>
+            <version>1.9.1</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
+
     <build>
         <plugins>
+            <!-- Maven Surefire Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
+                <configuration>
+                    <groups>${testGroups}</groups>
+                </configuration>
             </plugin>
+
+            <!-- JaCoCo for test coverage -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.7</version>
+                <version>0.8.12</version>
                 <executions>
                     <execution>
                         <goals>
@@ -57,4 +75,21 @@
         </plugins>
     </build>
 
+    <profiles>
+        <!-- Профіль для позитивних тестів -->
+        <profile>
+            <id>positive-tests</id>
+            <properties>
+                <testGroups>positive</testGroups>
+            </properties>
+        </profile>
+
+        <!-- Профіль для негативних тестів -->
+        <profile>
+            <id>negative-tests</id>
+            <properties>
+                <testGroups>negative</testGroups>
+            </properties>
+        </profile>
+    </profiles>
 </project>

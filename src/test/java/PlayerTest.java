@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.api.Assumptions;
@@ -9,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class PlayerTest {
 
     @Test
+    @Tag("positive")
     void testAddScore() {
         Player player = new Player("TestPlayer");
         player.addScore(10);
@@ -16,6 +18,7 @@ class PlayerTest {
     }
 
     @Test
+    @Tag("positive")
     void testIsBusted() {
         Player player = new Player("TestPlayer");
         player.addScore(22);
@@ -23,6 +26,7 @@ class PlayerTest {
     }
 
     @Test
+    @Tag("positive")
     void testStop() {
         Player player = new Player("TestPlayer");
         player.stop();
@@ -37,6 +41,7 @@ class PlayerTest {
     }
 
     @Test
+    @Tag("negative")
     @Timeout(value = 1, unit = TimeUnit.SECONDS)
     void testTimeout() throws InterruptedException {
         Thread.sleep(500); // Імітація затримки
