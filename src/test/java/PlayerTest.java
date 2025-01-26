@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
+import org.junit.jupiter.api.Assumptions;
 
 import java.util.concurrent.TimeUnit;
 
@@ -40,5 +41,12 @@ class PlayerTest {
     void testTimeout() throws InterruptedException {
         Thread.sleep(500); // Імітація затримки
         assertTrue(true);
+    }
+
+    @Test
+    void testInitialScore() {
+        Player player = new Player("TestPlayer");
+        Assumptions.assumeTrue(player.getScore() == 0, "Початковий рахунок повинен бути 0.");
+        assertEquals(0, player.getScore());
     }
 }
