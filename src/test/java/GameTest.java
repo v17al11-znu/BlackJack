@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 class GameTest {
 
@@ -30,6 +31,21 @@ class GameTest {
         Player dealer = new Player("Dealer");
         player.addScore(18);
         dealer.addScore(20);
+
+        assertTrue(dealer.getScore() > player.getScore(), "Дилер має перемогти.");
+    }
+
+    @Test
+    void testDetermineWinnerWithAssumption() {
+        Player player = new Player("Player");
+        Player dealer = new Player("Dealer");
+        player.addScore(22); // додаємо гравцю напочатку одразу 22 очки.
+
+        // Припущення: гравець ще не перевищив 21.
+        assumeTrue(player.getScore() <= 21, "Гравець не повинен перевищувати 21 до початку тесту");
+
+        dealer.addScore(20);
+        player.addScore(18);
 
         assertTrue(dealer.getScore() > player.getScore(), "Дилер має перемогти.");
     }

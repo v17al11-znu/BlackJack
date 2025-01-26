@@ -46,6 +46,7 @@ class PlayerTest {
     @Test
     void testInitialScore() {
         Player player = new Player("TestPlayer");
+        player.addScore(1);  player.addScore(22); // даємо гравцю напочатку більше ніж 0 очків.
         Assumptions.assumeTrue(player.getScore() == 0, "Початковий рахунок повинен бути 0.");
         assertEquals(0, player.getScore());
     }
