@@ -8,7 +8,8 @@ class PlayerTest {
     void testAddScore() {
         Player player = new Player("TestPlayer");
         player.addScore(10);
-        assertEquals(10, player.getScore(), "Очки повинні дорівнювати 10.");
+        // Неправильне очікування (навмисно для провалу)
+        assertEquals(15, player.getScore(), "Очки гравця не відповідають очікуваному значенню.");
     }
 
     @Test
